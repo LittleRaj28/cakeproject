@@ -1,0 +1,70 @@
+1)registration
+================
+
+url:http://127.0.0.1:8000/api/register
+method:post
+body:{"username","password","email","phone","address"}
+authorization:nill
+
+
+2)cake list api
+url:http://127.0.0.1:8000/api/cakes/
+method:get
+authorization:nill
+status:progress
+
+=========
+
+3)cake detail
+
+url:http://127.0.0.1:8000/api/cakess/2
+method:get
+
+4) add to cart api
+url:http://127.0.0.1:8000/api/cakes/{varient_id}/cart_add/
+method:post
+authorization:username,password
+body:nill
+
+5) cart list
+url:http://127.0.0.1:8000/api/carts/
+method:get
+authorization:username,password
+body:nill
+
+6) cart delete
+url:http://127.0.0.1:8000/api/carts/{cart_id}/
+method:delete
+authorization:username,password
+body:nill
+
+7) place order
+url:http://127.0.0.1:8000/api/cakes/{varient_id}/place_order/
+method:post
+authorization:username,password
+body:address 
+
+8)listorders
+http://127.0.0.1:8000/api/orders/
+method:get
+body:nill
+headers:username,password
+
+9)order_delete
+url:http://127.0.0.1:8000/api/orders/id
+
+method:delete
+body:nill
+headers:username,password
+
+
+
+
+
+
+
+
+
+
+
+

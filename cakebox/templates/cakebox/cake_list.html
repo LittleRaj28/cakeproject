@@ -1,0 +1,32 @@
+{% extends 'cakebox/base.html' %}
+    
+{% block main_block %}
+    <div class="container mt-5">
+        <table class="table table-striped">
+            <tr>
+                <td>Name</td>
+                <td>Image</td>
+                <td>Description</td>
+                <td>Category</td>
+                <td>Action</td>
+            </tr>
+            {%for c in cakes%}
+            <tr>
+                <td>{{c.name}}</td>
+            <td>
+                <img src="{{c.image.url}}" alt="" width="100%" height="100px" style="object-fit:100px ;">
+            </td>
+            <td>{{c.details}}</td>
+            <td>{{c.category}}</td>
+            <td>
+                <div class="d-flex justify-content-evenly" style="gap: 10px;">
+                    <a href="{% url 'cake-remove' c.id}"><i class="fa-solid fa-trash" style="color: #ff0000;"></i></a>
+                    <a href="{% url 'add-varient' c.id%}"><i class="fa-solid fa-plus" style="color: #087a00;"></i></a>
+                    <a href="{% url 'cake-detail' c.id%}"><i class="fa-solid fa-eye" style="color: #0561ff;"></i></a>
+                </div>
+            </td>
+            </tr>
+            {%endfor%}
+        </table>
+    </div>
+{% endblock %}

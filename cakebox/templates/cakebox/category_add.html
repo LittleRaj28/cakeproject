@@ -1,0 +1,42 @@
+{%extends 'cakebox/base.html'%}
+{% load static %}
+{%block main_block%}
+<link rel="stylesheet" href="{% static 'css/category_add.css' %}">
+
+<div class="container d-flex flex-column align-items-center mt-5">
+    <div class="row w-100">
+        <div class="col-6 w-78">
+            <div  class="border border-4 p-5">
+                <h1 class="text-center">Categories</h1>
+                
+             <form action="" method="post">
+         
+                 {%csrf_token%}
+                 {{form.as_p}}
+                 <input type="submit" value="Add">
+             </form>
+             <div>
+                <table class="table">
+                    <tr>
+                        <td>Name</td>
+                        <td>Action</td>
+                    </tr>
+                    {%for cat in categories%}
+                       <tr>
+                        <td>{{cat.name}}</td>
+                        <td>
+                            <a href="{%url 'category-remove' cat.id %}"><i class="fa-solid fa-trash "></i></a>
+                        </td>
+                
+                       </tr>
+                    {%endfor%}
+                
+                </table>
+               </div>
+         
+            </div>
+        </div>
+        <div class="col-6"></div>
+    </div>
+
+{%endblock%}

@@ -1,0 +1,85 @@
+{%extends 'cakebox/base.html'%}
+{%block main_block%}
+<div class="container-fluid mt-5">
+  <div class="row" style="width: 100%;">
+      <div class="col-6">
+        <div class="card" style="width:100%;">
+            <img src="{{cake.image.url}}" class="card-img-top" alt="..." height="500px">
+            <div class="card-body">
+              <h5 class="card-title">{{cake.name}}</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{cake.details}}</li>
+                <li class="list-group-item">{{cake.category}}</li>
+              </ul>
+            </div>    
+        </div>
+      </div>
+      <div class="col-6 border" style="width: 100%;">
+          <table class="table table-striped "> 
+            <tr>
+              <td>Price</td>
+              <td>Weight</td>
+              <td></td>
+              <td>Action</td>
+              <td></td>
+              
+            </tr>
+            {%for v in cake.cakevarients_set.all%}
+            <tr>
+              <td>{{v.price}}</td>
+              <td>{{v.weight}}</td>
+              
+              <td>
+                <a href="{% url 'update-varient' v.id%}" ><i class="fa-solid fa-pen-to-square fa-lg" style="color: #54e605;"></i></a>
+              </td>
+              <td>
+                  <a href="{% url 'remove-varient' v.id%}"><i class="fa-solid fa-trash fa-lg" style="color: #ff0000;"></i></a>
+              </td>
+              <td>
+                <a href="{% url 'offers-add' v.id%}"><i class="fa-solid fa-plus fa-lg" style="color: #0620e5;"></i></a>
+              </td>
+              {%endfor%}
+            </tr>
+          </table>
+      </div>
+  </div>
+  {% for v in cake.cakevarients_set.all%}
+    {%for o in v.offers_set.all%}
+        <div class="border">
+        <div>
+        weight: {{o.cakevarient.weight}} | price: {{o.cakevarient.price}}
+        </div>
+        <div><span>offer price:{{o.price}}rs</span></div>
+        <div><span>start_date:{{o.start_date}}</span></div>
+        <div><span>due_date:{{o.due_date}}</span></div>
+        <a href="{%url 'delete-offer' o.id%}">Delete</a>
+        </div>
+    {% endfor%}
+  {% endfor%}
+</div>
+
+<div class="row">
+
+<h1>Reviews and Ratings</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Rating</th>
+      <th>Comment</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for r in cake.reviews_set.all%}
+    <tr>
+      <td>{{r.user}}</td>
+      <td>{{r.rating}}</td>
+      <td>{{r.comment}}</td>
+      <td><a href="{% url 'review-remove' r.id %}"><i class="fa-solid fa-xmark fa-lg" style="color: #f00000;"></i></a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{%endblock%}
